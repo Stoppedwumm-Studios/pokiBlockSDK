@@ -1,4 +1,7 @@
 let pokiBlockSDK = {}
+function newError(err) {
+    return {"type": "pokiBlockSDKError", "error": err}
+}
 
 pokiBlockSDK.ERROR = "pokiBlockSDKError"
 pokiBlockSDK.SENT = "pokiBlockSDKSent"
@@ -20,7 +23,7 @@ pokiBlockSDK.init = () => {
             })
         } catch (error) {
             console.log(error)
-            resolve({"type": "pokiBlockSDKError", "error": error})
+            resolve(newError(error))
         }
     })
 }
@@ -32,7 +35,7 @@ pokiBlockSDK.blocked = async () => {
         return {"type": "pokiBlockSDKSent"}
     } catch (error) {
         console.log(error)
-        return {"type": "pokiBlockSDKError", "error": error}
+        return newError(error)
     }
 }
 
@@ -42,7 +45,7 @@ pokiBlockSDK.gameStarted = async () => {
         return {"type": "pokiBlockSDKSent"}
     } catch (error) {
         console.log(error)
-        return {"type": "pokiBlockSDKError", "error": error}
+        return newError(error)
     }
 }
 
@@ -52,7 +55,7 @@ pokiBlockSDK.gameEnded = async () => {
         return {"type": "pokiBlockSDKSent"}
     } catch (error) {
         console.log(error)
-        return {"type": "pokiBlockSDKError", "error": error}
+        return newError(error)
     }
 }
 
